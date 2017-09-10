@@ -2,12 +2,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-	private int rating;
+	// Generic super class for Guard, Forward, Big
+	private int rating; // rating of the ability
 	private int height;
 	private String name;
-	private int price;
-	private String playerType;
-	private List<String> attributes;
+	private int price; // cost of purchase
+	private String playerType; // Either Guard, Forward, or Big
+	private List<String> attributes; // Each player can have up to 5 unique attributes for their position. This holds the attributes that a specific player has
 	
 	public Player(int r, int h, String n, int p, String playerType) {
 		this.rating = r;
@@ -22,7 +23,7 @@ public class Player {
 		this.attributes = new ArrayList<String>();
 	}
 
-	public void printAttributes() {
+	public void printAttributes() { // toString method basically, but just prints it
 		System.out.println("Name: " + this.getName());
 		System.out.println("Rating: " + this.getRating());
 		System.out.println("Position: " + this.getPlayerType());
@@ -34,7 +35,7 @@ public class Player {
 	public int getRating() {
 		return rating;
 	}
-	public void addAttribute(String s) {
+	private void addAttribute(String s) { 
 		attributes.add(s);
 	}
 	public List<String> getAttributes() {
