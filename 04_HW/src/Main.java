@@ -9,7 +9,9 @@ import java.util.Random;
 
 public class Main {
 	public static void main(String[] args) {
+		// holds a list of all the players (0-50 guards, 51-100 forwards, 101-150 bigs)
 		List<Player> players = generatePlayers();
+		/* test code to see if players are generated properly
 		int i = 0;
 		for(Player p : players) {
 			if(i % 10 == 0) {
@@ -18,6 +20,7 @@ public class Main {
 			}
 			i++;
 		}
+		*/
 
 	}
 	
