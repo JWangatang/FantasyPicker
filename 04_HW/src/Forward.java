@@ -17,8 +17,7 @@ public class Forward extends Player {
 		// TODO: Create static final variables for these rating and height ranges
 		this.setRating(randRating.nextInt((100 - 50) + 1) + 50);
 		this.setHeight(randHeight.nextInt((82 - 78) + 1) + 78);
-		
-		// TODO: Define price as the sum of all attribute values 
+		 
 		this.setPrice(this.getRating());
 		this.setPlayerType("Forward");// TODO: Switch to ENUM
 		
@@ -36,7 +35,7 @@ public class Forward extends Player {
 	}
 	
 	// TODO: Use enum implementation
-	private void generateAttributes() {
+	protected void generateAttributes() {
 		Random rand = new Random();
 		int randomNum = rand.nextInt(possibleSkills.size());
 		if(randomNum == 0) randomNum++;

@@ -36,7 +36,7 @@ public class Guard extends Player {
 	}
 	
 	// TODO: Use enum implementation
-	private void generateAttributes() {
+	protected void generateAttributes() {
 		Random rand = new Random();
 		int randomNum = rand.nextInt(possibleSkills.size());
 		if(randomNum == 0) randomNum++;

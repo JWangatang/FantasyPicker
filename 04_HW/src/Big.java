@@ -18,7 +18,6 @@ public class Big extends Player {
 		this.setRating(randRating.nextInt((100 - 50) + 1) + 50);
 		this.setHeight(randHeight.nextInt((89 - 83) + 1) + 83);
 		
-		// TODO: Define price as the sum of all attribute values 
 		this.setPrice(this.getRating());
 		this.setPlayerType("Big"); // TODO: Switch to ENUM
 		
@@ -36,7 +35,7 @@ public class Big extends Player {
 	}
 	
 	// TODO: Use enum implementation
-	private void generateAttributes() {
+	protected void generateAttributes() {
 		Random rand = new Random();
 		int randomNum = rand.nextInt(possibleSkills.size());
 		if(randomNum == 0) randomNum++;

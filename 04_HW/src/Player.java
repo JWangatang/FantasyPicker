@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player {
+public abstract class Player {
 		
 	// Generic super class for Guard, Forward, Big
 	private int rating; // rating of the ability
@@ -21,6 +21,8 @@ public class Player {
 		this.playerType = playerType;
 		this.attributes = new ArrayList<String>();
 	}
+	
+	protected abstract void generateAttributes();
 	
 	public Player() {
 		this.attributes = new ArrayList<String>();
