@@ -2,11 +2,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
+		
 	// Generic super class for Guard, Forward, Big
 	private int rating; // rating of the ability
 	private int height;
 	private String name;
 	private int price; // cost of purchase
+	
+	// TODO: Replace with Enums
 	private String playerType; // Either Guard, Forward, or Big
 	private List<String> attributes; // Each player can have up to 5 unique attributes for their position. This holds the attributes that a specific player has
 	
@@ -35,7 +38,7 @@ public class Player {
 	public int getRating() {
 		return rating;
 	}
-	private void addAttribute(String s) { 
+	public void addAttribute(String s) { 
 		attributes.add(s);
 	}
 	public List<String> getAttributes() {
