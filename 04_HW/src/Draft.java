@@ -149,7 +149,11 @@ public class Draft {
 					System.out.println("It is Team " + u.getName() + "'s turn.");
 					executeCommand(u, scan);			
 				}
+				
 			}
+			
+			// End of Draft
+			// TODO: calculate and print rankings
 			
 		} 
 		System.out.println(THANKS_TEXT);
@@ -161,12 +165,14 @@ public class Draft {
 		
 		if (command == 1) {
 			System.out.println(VIEW_GUARDS_TEXT);
+			// TODO: Print all guards
 			int selection = this.getPlayerIndexSelection(SELECT_GUARDS_TEXT, scan);
 			if (selection != -1) {
 				if (selection > 50) { // TODO: CHECK INDEX
 					executeCommand(user, scan);
 				} else if (this.factory.selectPlayer(user, selection)) {
 					System.out.println(SELECTED_TEXT);
+					System.out.println(END_TURN_TEXT);
 				} else {
 					System.out.println(UNAVAILABLE_ERROR);
 					executeCommand(user, scan);
@@ -176,12 +182,14 @@ public class Draft {
 			}
 		} else if (command == 2) {
 			System.out.println(VIEW_FORWARDS_TEXT);
+			// TODO: Print all forwards
 			int selection = this.getPlayerIndexSelection(SELECT_FORWARDS_TEXT, scan);
 			if (selection != -1) {
 				if (selection < 50 || selection > 100) { // TODO: CHECK INDEX
 					executeCommand(user, scan);
 				} else if (this.factory.selectPlayer(user, selection)) {
 					System.out.println(SELECTED_TEXT);
+					System.out.println(END_TURN_TEXT);
 				} else {
 					System.out.println(UNAVAILABLE_ERROR);
 					executeCommand(user, scan);
@@ -191,12 +199,14 @@ public class Draft {
 			}
 		} else if (command == 3) {
 			System.out.println(VIEW_BIGS_TEXT);
+			// TODO: print all bigs
 			int selection = this.getPlayerIndexSelection(SELECT_BIGS_TEXT, scan);
 			if (selection != -1) {
 				if (selection < 100) { // TODO: CHECK INDEX
 					executeCommand(user, scan);
 				} else if (this.factory.selectPlayer(user, selection)) {
 					System.out.println(SELECTED_TEXT);
+					System.out.println(END_TURN_TEXT);
 				} else {
 					System.out.println(UNAVAILABLE_ERROR);
 					executeCommand(user, scan);
