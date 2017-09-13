@@ -32,7 +32,7 @@ public class User {
 		}
 	}
 	
-	// Calculates total rating
+	// Calculates total rating for team
 	public int getTotalRating () {
 		int totalRating = 0;
 		for (Player p : this.team) {

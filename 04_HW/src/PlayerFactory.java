@@ -5,22 +5,26 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
 public class PlayerFactory {
-	Map<Player, Boolean> guards;
-	Map<Player, Boolean> forwards;
-	Map<Player, Boolean> bigs;
-
-
+	
+	private ArrayList<Player> players;
+	
+	private Map<Player, Boolean> guards;
+	private Map<Player, Boolean> forwards;
+	private Map<Player, Boolean> bigs;
 	
 	public PlayerFactory() {
 		guards = new HashMap<Player, Boolean>();
 		forwards = new HashMap<Player, Boolean>();
 		bigs = new HashMap<Player, Boolean>();
 		this.fillMaps();
+	}
+	
+	public ArrayList<Player> getPlayers(){
+		return this.players;
 	}
 	
 	public Map<Player, Boolean> getGuards() {
@@ -35,9 +39,9 @@ public class PlayerFactory {
 		return bigs;
 	}
 	
-	private List<Player> generatePlayers() {
-		List<String> names = new ArrayList<String>();
-		List<Player> players = new ArrayList<Player>();
+	private ArrayList<Player> generatePlayers() {
+		ArrayList<String> names = new ArrayList<String>();
+		ArrayList<Player> players = new ArrayList<Player>();
 		String line;
 		try {
 			InputStream fis = new FileInputStream("data/first-names.txt");
@@ -73,16 +77,25 @@ public class PlayerFactory {
 	}
 	
 	private void fillMaps() {
-		List<Player> players = this.generatePlayers();
+		this.players = this.generatePlayers();
 		for(int i = 0; i < 51; i++) {
-			this.guards.put(players.get(i), true);
+			this.guards.put(this.players.get(i), true);
 		}
 		for(int i = 51; i < 101; i++) {
-			this.forwards.put(players.get(i), true);
+			this.forwards.put(this.players.get(i), true);
 		}
-		for(int i = 101; i < players.size(); i++) {
-			this.bigs.put(players.get(i), true);
+		for(int i = 101; i < this.players.size(); i++) {
+			this.bigs.put(this.players.get(i), true);
 		}
+	}
+	
+	public boolean selectPlayer (User user, int playerIndex) {
+		Player p = this.players.get(playerIndex);
+		// TODO: finish this function
+		if (!guards.containsKey(p) && !forwards.containsKey(p) && !bigs.containsKey(p)) {
+			
+		}
+		return true;
 	}
 
 }
