@@ -20,7 +20,7 @@ public class Guard extends Player {
 		
 		// TODO: Define price as the sum of all attribute values 
 		this.setPrice(this.getRating());
-		this.setPlayerType("Guard"); // TODO: Switch to ENUM
+		this.setPlayerType(PlayerType.GUARD); // TODO: Switch to ENUM
 		
 		// TODO: Make this into an enum
 		// Ex. ATTRIBUTE1 (10), ATTRIBUTE2 (5), etc.

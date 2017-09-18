@@ -10,17 +10,10 @@ public abstract class Player {
 	private int price; // cost of purchase
 	
 	// TODO: Replace with Enums
-	private String playerType; // Either Guard, Forward, or Big
+	private PlayerType playerType;
 	private List<String> attributes; // Each player can have up to 5 unique attributes for their position. This holds the attributes that a specific player has
 	
-	public Player(int r, int h, String n, int p, String playerType) {
-		this.rating = r;
-		this.height = h;
-		this.name = n;
-		this.price = p;
-		this.playerType = playerType;
-		this.attributes = new ArrayList<String>();
-	}
+	
 	
 	protected abstract void generateAttributes();
 	
@@ -46,10 +39,10 @@ public abstract class Player {
 	public List<String> getAttributes() {
 		return attributes;
 	}
-	public String getPlayerType() {
+	public PlayerType getPlayerType() {
 		return playerType;
 	}
-	public void setPlayerType(String p) {
+	public void setPlayerType(PlayerType p) {
 		this.playerType = p;
 	}
 

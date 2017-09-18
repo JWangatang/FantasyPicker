@@ -19,7 +19,7 @@ public class Forward extends Player {
 		this.setHeight(randHeight.nextInt((82 - 78) + 1) + 78);
 		 
 		this.setPrice(this.getRating());
-		this.setPlayerType("Forward");// TODO: Switch to ENUM
+		this.setPlayerType(PlayerType.FORWARD);// TODO: Switch to ENUM
 		
 		// TODO: Make this into an enum, with a point value
 		// Ex. Microwave (10), Point Forward (5), etc.

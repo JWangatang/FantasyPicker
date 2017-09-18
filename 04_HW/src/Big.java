@@ -19,7 +19,7 @@ public class Big extends Player {
 		this.setHeight(randHeight.nextInt((89 - 83) + 1) + 83);
 		
 		this.setPrice(this.getRating());
-		this.setPlayerType("Big"); // TODO: Switch to ENUM
+		this.setPlayerType(PlayerType.BIG); // TODO: Switch to ENUM
 		
 		// TODO: Make this into an enum
 		// Ex. ATTRIBUTE1 (10), ATTRIBUTE2 (5), etc.
