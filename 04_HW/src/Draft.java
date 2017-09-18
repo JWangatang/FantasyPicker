@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class Draft {
@@ -25,7 +26,7 @@ public class Draft {
 			NAME_TEXT = "Enter your team name: ",
 			ORDER_TEXT = "The teams have now been created and shuffled. Here's the order for team selection:",
 			DONE_SETUP_TEXT = "Sweet. Now that we're all set up, let's start drafting!",
-			MENU_TEXT = "Here's what you can do for your turn:"
+			MENU_TEXT = "Here's what you can do for your turn:\n"
 					+ "Commands:\n"
 					+ "1 - View/Select Guards\n"
 					+ "2 - View/Select Forwards\n"
@@ -94,6 +95,22 @@ public class Draft {
 		return input;
 	}
 	
+	private int getCommandInput(String prompt, Scanner scan) {
+		System.out.println(prompt);
+		String input = scan.nextLine();
+		try {
+			int integer = Integer.parseInt(input);
+			if (integer != 1 && integer != 2 && integer != 3 && integer != 4) {
+				System.out.println(COMMAND_ERROR);
+				return this.getCommandInput(prompt, scan);
+			}
+			return integer;
+		} catch (NumberFormatException e) {
+			System.out.println(COMMAND_ERROR);
+			return this.getCommandInput(prompt, scan);
+		}
+	}
+	
 	// Prompts user for a player index
 	private int getPlayerIndexSelection (String prompt, Scanner scan) {
 		System.out.println(prompt);
@@ -151,21 +168,43 @@ public class Draft {
 				}
 				
 			}
+			System.out.println(END_DRAFT_TEXT);
 			
-			// End of Draft
-			// TODO: calculate and print rankings
 			
+			// End of Draft - Calculate and print rankings
+			// Comparator Interface here
+			Collections.sort(teams, new Comparator<User>(){
+			    public int compare(User one, User two) {
+			    		int oneTotal = one.getTotalRating();
+			    		int twoTotal = two.getTotalRating();
+			        if(oneTotal > twoTotal) {
+			        		return -1;
+			        } else if (oneTotal == twoTotal) {
+			        		return 0;
+			        } else {
+			        		return 1;
+			        }
+			    }
+			});
+			
+			User winner = teams.get(0);
+			for (User user : teams) {
+				int total = user.getTotalRating();
+				System.out.println(user.getName() + " has a total of " + total + " points.");
+			}
+			
+			System.out.println("Winner: " + winner.getName() + " with " + winner.getTotalRating() + " points");
 		} 
 		System.out.println(THANKS_TEXT);
 		scan.close();
 	}
 	
 	private void executeCommand (User user, Scanner scan) {
-		int command = this.getIntegerInput(MENU_TEXT, scan);
+		int command = this.getCommandInput(MENU_TEXT, scan);
 		
 		if (command == 1) {
 			System.out.println(VIEW_GUARDS_TEXT);
-			// TODO: Print all guards
+			factory.printGuards();
 			int selection = this.getPlayerIndexSelection(SELECT_GUARDS_TEXT, scan);
 			if (selection != -1) {
 				if (selection > 50) { // TODO: CHECK INDEX
@@ -182,10 +221,10 @@ public class Draft {
 			}
 		} else if (command == 2) {
 			System.out.println(VIEW_FORWARDS_TEXT);
-			// TODO: Print all forwards
+			factory.printForwards();
 			int selection = this.getPlayerIndexSelection(SELECT_FORWARDS_TEXT, scan);
 			if (selection != -1) {
-				if (selection < 50 || selection > 100) { // TODO: CHECK INDEX
+				if (selection < 50 || selection > 99) { // TODO: CHECK INDEX
 					executeCommand(user, scan);
 				} else if (this.factory.selectPlayer(user, selection)) {
 					System.out.println(SELECTED_TEXT);
@@ -199,10 +238,10 @@ public class Draft {
 			}
 		} else if (command == 3) {
 			System.out.println(VIEW_BIGS_TEXT);
-			// TODO: print all bigs
+			factory.printBigs();
 			int selection = this.getPlayerIndexSelection(SELECT_BIGS_TEXT, scan);
 			if (selection != -1) {
-				if (selection < 100) { // TODO: CHECK INDEX
+				if (selection < 100 || selection > 149) { // TODO: CHECK INDEX
 					executeCommand(user, scan);
 				} else if (this.factory.selectPlayer(user, selection)) {
 					System.out.println(SELECTED_TEXT);
@@ -216,10 +255,7 @@ public class Draft {
 			}
 		} else if (command == 4) {
 			System.out.println(VIEW_TEAM_TEXT);
-			// TODO: Print team
-			
-		} else {
-			System.out.println(COMMAND_ERROR);
+			user.printTeam();
 			executeCommand(user, scan);
 		}
 	}

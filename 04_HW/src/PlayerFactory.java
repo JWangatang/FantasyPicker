@@ -89,13 +89,53 @@ public class PlayerFactory {
 		}
 	}
 	
+	public void printGuards() {
+		int index = 0;
+		for (Player p: this.guards.keySet()) {
+			System.out.println("Index: " + index);
+			index++;
+			p.printAttributes();
+		}
+	}
+	
+	public void printForwards() {
+		int index = 50;
+		for (Player p: this.forwards.keySet()) {
+			System.out.println("Index: " + index);
+			index++;
+			p.printAttributes();
+		}
+	}
+	
+	public void printBigs() {
+		int index = 99;
+		for (Player p: this.bigs.keySet()) {
+			System.out.println("Index: " + index);
+			index++;
+			p.printAttributes();
+		}
+	}
+	
 	public boolean selectPlayer (User user, int playerIndex) {
 		Player p = this.players.get(playerIndex);
-		// TODO: finish this function
-		if (!guards.containsKey(p) && !forwards.containsKey(p) && !bigs.containsKey(p)) {
-			
+		if (guards.containsKey(p)) {
+			if(guards.get(p)) {
+				return user.purchasePlayer(p);
+			}
+			return false;
+		} else if (forwards.containsKey(p)) {
+			if(forwards.get(p)) {
+				return user.purchasePlayer(p);
+			}
+			return false;
+		} else if (bigs.containsKey(p)) {
+			if(bigs.get(p)) {
+				return user.purchasePlayer(p);
+			}
+			return false;
+		} else {
+			return false;
 		}
-		return true;
 	}
 
 }
