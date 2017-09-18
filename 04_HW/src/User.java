@@ -40,4 +40,11 @@ public class User {
 		}
 		return totalRating;
 	}
+	
+	public void printTeam () {
+		System.out.println("Current team:");
+		for (Player p : team) {
+			p.printAttributes();
+		}
+	}
 }
