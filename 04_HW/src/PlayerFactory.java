@@ -57,10 +57,10 @@ public class PlayerFactory {
 
 			while(players.size() < 150) {
 				int i = rand.nextInt(((names.size() - 1 - 0) + 1) + 0);
-				if(players.size() >= 0 && players.size() <= 50) {
+				if(players.size() < 50) {
 					players.add(new Guard(names.get(i)));
 				}
-				else if(players.size() >= 51 && players.size() <= 100) {
+				else if(players.size() >= 50 && players.size() < 100) {
 					players.add(new Forward(names.get(i)));
 				}
 				else {
