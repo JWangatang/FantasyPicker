@@ -78,13 +78,13 @@ public class PlayerFactory {
 	
 	private void fillMaps() {
 		this.players = this.generatePlayers();
-		for(int i = 0; i < 51; i++) {
+		for(int i = 0; i < 50; i++) {
 			this.guards.put(this.players.get(i), true);
 		}
-		for(int i = 51; i < 101; i++) {
+		for(int i = 50; i < 100; i++) {
 			this.forwards.put(this.players.get(i), true);
 		}
-		for(int i = 101; i < this.players.size(); i++) {
+		for(int i = 100; i < this.players.size(); i++) {
 			this.bigs.put(this.players.get(i), true);
 		}
 	}
